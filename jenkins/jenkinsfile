@@ -17,7 +17,7 @@ pipeline {
             steps {
                 dir('bugtracker-backend') {
                     sh 'go test -v ./...'
-                    sh 'hello first jenkins push'
+                    echo 'hello first jenkins push'
                 }
             }
         }
