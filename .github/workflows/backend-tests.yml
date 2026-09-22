@@ -21,10 +21,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Show Execution Time
+        run: echo "Execution Time: $(date '+%Y-%m-%d %H:%M:%S')"
+
       - name: Setup Go
         uses: actions/setup-go@v5
         with:
-          go-version-file: go.mod
+          go-version-file: ./bugtracker-backend/go.mod
 
       - name: Download dependencies
         run: go mod download
