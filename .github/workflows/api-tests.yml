@@ -24,6 +24,14 @@ jobs:
       - name: Show Execution Time
         run: date
 
+      - name: Start Backend
+        working-directory: .
+        run: docker compose up -d --build --wait backend
+
+      - name: Check Backend Health
+        working-directory: .
+        run: curl --fail http://localhost:8080/api/health
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -39,3 +47,8 @@ jobs:
 
       - name: Run API Tests
         run: npx playwright test
+
+      - name: Stop Backend
+        if: always()
+        working-directory: .
+        run: docker compose down
