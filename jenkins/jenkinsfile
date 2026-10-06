@@ -17,7 +17,23 @@ pipeline {
             steps {
                 dir('bugtracker-backend') {
                     sh 'go test -v ./...'
-                    echo 'hello first jenkins push'
+                    echo 'hello from backend tests'
+                }
+            }
+        }
+        stage('Unit tests - Frontend') {
+            agent {
+                docker {
+                    image 'node:20'
+                    reuseNode true
+                }
+            }
+
+            steps {
+                dir('bugtracker-frontend') {
+                    sh 'npm ci'
+                    sh 'npm test'
+                    echo 'hello from frontend tests'
                 }
             }
         }
