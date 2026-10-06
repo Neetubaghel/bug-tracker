@@ -28,6 +28,9 @@ pipeline {
                     reuseNode true
                 }
             }
+            environment {
+                       TZ = 'Asia/Kolkata'
+            }
 
             steps {
                 dir('bugtracker-frontend') {
